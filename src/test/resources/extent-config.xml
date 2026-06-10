@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extentreports>
+
+    <!-- Report Theme -->
+    <configuration>
+        <theme>light</theme>
+        <documentTitle>Automation Test Report</documentTitle>
+        <reportName>Regression Test Suite</reportName>
+        <encoding>UTF-8</encoding>
+        <protocol>https</protocol>
+        <timelineEnabled>true</timelineEnabled>
+    </configuration>
+
+    <!-- Custom CSS -->
+    <css>
+        <![CDATA[
+            .nav-wrapper {
+                background-color: #1E88E5;
+            }
+        ]]>
+    </css>
+
+    <!-- Custom JavaScript -->
+    <js>
+        <![CDATA[
+            console.log('Extent Report Loaded');
+        ]]>
+    </js>
+
+</extentreports>
