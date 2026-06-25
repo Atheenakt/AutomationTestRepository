@@ -13,6 +13,7 @@ Background:
     When user enters email and password "<email>" "<password>"
     When user clicks on login button
     When user validates error message "<errorMsg>"
+    #When user signs out
 
     Examples:
       | email     | password | errorMsg        |
