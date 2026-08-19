@@ -17,3 +17,19 @@ Feature: Registration Page Feature
     Examples:
       | firstName | lastName | Email        | Telephone  | password | subscribeOption |title|
       | Anu       | Radha    | anu@test.com | 1234567890 | Test@123 | No              |Register Account|
+
+    @ExcelTag
+    Scenario Outline: Registration using Excel reader
+      Given User is on the home Page of Automation labs
+      When user clicks on registration button from My Account Option
+      Then user validates the title of the page "<title>"
+      Then validates user is the on the register account page
+      When user enter the details from Excel sheet in registration page "<sheetName>" <row>
+      When user clicks on subscribe Option "<subscribeOption>"
+      When user clicks on privacy policy checkbox
+      When user clicks on continue button
+      Examples:
+        |title           |subscribeOption|sheetName           |row|
+        |Register Account|No             |QA-TestData         |1  |
+
+
