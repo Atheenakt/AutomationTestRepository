@@ -8,6 +8,7 @@ Background:
   Then user validates the title of the page "Account Login"
   Then validates user is the on the login page
 
+  @Login
   Scenario Outline: Invalid Login
 
     When user enters email and password "<email>" "<password>"
