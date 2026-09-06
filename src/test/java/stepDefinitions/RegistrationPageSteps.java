@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class RegistrationPageSteps {
 
-    private RegistrationPage registrationPage=new RegistrationPage(DriverFactory.getDriver());
+    private final RegistrationPage registrationPage=new RegistrationPage(DriverFactory.getDriver());
     ExcelReader excelReader=new ExcelReader();
     @Then("validates user is the on the register account page")
     public void validates_user_is_the_on_the_register_account_page() {

@@ -13,7 +13,7 @@ import pages.HomePage;
 import java.util.List;
 
 public class HomePageSteps {
-    private HomePage homePage=new HomePage(DriverFactory.getDriver());
+    private final HomePage homePage=new HomePage(DriverFactory.getDriver());
     @Given("User is on the home Page of Automation labs")
     public void user_is_on_the_home_page_of_automation_labs() {
         DriverFactory.getDriver().get("https://naveenautomationlabs.com/opencart/");

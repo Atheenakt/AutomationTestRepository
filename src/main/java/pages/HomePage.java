@@ -4,14 +4,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.WaitUtils;
 
 import java.time.Duration;
 import java.util.List;
 
 public class HomePage {
     WebDriver driver;
+    WaitUtils waitUtils;
     private final By myAccount=By.xpath("//a[@title='My Account']");
     private final By registerOption=By.linkText("Register");
     private final By loginOption=By.linkText("Login");
@@ -34,6 +35,7 @@ public class HomePage {
     private final By nextSwipeButton=By.xpath("//div[@class='carousel swiper-viewport']//div[@class='swiper-button-next']");
     public HomePage(WebDriver driver) {
         this.driver=driver;
+        this.waitUtils = new WaitUtils(driver);
     }
 
     public String getTitle()
@@ -80,16 +82,14 @@ public class HomePage {
     }
 
     public void clickOnCurrencyAndChooseCurrency(String currency) {
-        //final By productFromDropdown=By.xpath("//button[text()='"+currency+"']");
         driver.findElement(currencyButton).click();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[text()='"+currency+"']")));
+        WebElement element = waitUtils.waitForVisibility(By.xpath("//button[text()='"+currency+"']"));
         element.click();
     }
 
     public List<WebElement> capturePriceValues() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(productPrice));
+        waitUtils.waitForVisibility(productPrice);
         return driver.findElements(productPrice);
     }
 

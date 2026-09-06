@@ -1,4 +1,4 @@
-@smokeTest1
+
 
 Feature: Home Page Feature
 
@@ -10,7 +10,7 @@ Feature: Home Page Feature
     When user click on MyAccountOption
     Then user validate options displayed for MyAccount
 
-
+  @smokeTest1
   Scenario Outline: Home page Currency validation and selection
 
     When user click on currency and selects "<currencyType>"
