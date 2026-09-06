@@ -1,10 +1,16 @@
 package stepDefinitions;
 
 import factory.DriverFactory;
+import io.cucumber.java.PendingException;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.WebElement;
 import pages.HomePage;
+
+import java.util.List;
 
 public class HomePageSteps {
     private HomePage homePage=new HomePage(DriverFactory.getDriver());
@@ -33,5 +39,64 @@ public class HomePageSteps {
     @When("validates user is the on the login page")
     public void user_is_on_the_login_page() {
 
+    }
+
+    @Then("user validates options displayed in top right of the page")
+    public void userValidatesOptionsDisplayedInTopRightOfThePage() {
+        homePage.validateHomePageOptions();
+    }
+
+    @When("user click on MyAccountOption")
+    public void userClickOnMyAccountOption() {
+        homePage.clickOnMyAccount();
+    }
+
+    @Then("user validate options displayed for MyAccount")
+    public void userValidateOptionsDisplayedForMyAccount() {
+        homePage.validateMyAccountOptions();
+    }
+
+    @When("user click on currency and selects {string}")
+    public void userClickOnCurrencyAndSelects(String currency) {
+        homePage.clickOnCurrencyAndChooseCurrency(currency);
+    }
+
+    @Then("user validates product price is updated with {string}")
+    public void userValidatesProductPriceIsUpdatedWith(String currency) {
+        List<WebElement> priceListfromUI=homePage.capturePriceValues();
+        String currencySymbol=currency.substring(0,1);
+        for(WebElement price:priceListfromUI)
+        {
+            Assert.assertTrue(price.getText().contains(currencySymbol));
+        }
+    }
+
+    @When("user clicks on LOB product {string}")
+    public void userClicksOnLOBAndChoose(String product) {
+        homePage.chooseProductFromLOB(product);
+    }
+
+    @When("user choose product {string}")
+    public void userChooseProduct(String productClassification) {
+        if(productClassification!="NA")
+         homePage.chooseProductFromDropdown(productClassification);
+    }
+
+    @Then("user validates featured option is available in the bottom of the page")
+    public void userValidatesFeaturedOptionIsAvailableInTheBottomOfThePage() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @And("user validates products are displayed under featured option")
+    public void userValidatesProductsAreDisplayedUnderFeaturedOption() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
+    }
+
+    @And("user Validates available buttons for featured products")
+    public void userValidatesAvailableButtonsForFeaturedProducts() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
     }
 }

@@ -6,18 +6,18 @@ import org.openqa.selenium.WebDriver;
 public class RegistrationPage {
 
     private WebDriver driver;
-    private By first_Name= By.id("input-firstname");
-    private By last_Name= By.id("input-lastname");
-    private By emailID= By.id("input-email");
-    private By telephoneNum= By.id("input-telephone");
-    private By password= By.id("input-password");
-    private By confirmpassword= By.id("input-confirm");
-    private By yesRadioButton= By.xpath("//input[@name='newsletter' and @value='1']");
-    private By noRadioButton= By.xpath("//input[@name='newsletter'][@value='1']");
-    private By privacyPolicyCheckBox=By.xpath("//input[@name='agree'][@value='1']");
-    private By continueButton= By.xpath("//input[@type='submit'][@value='Continue']");
-    private By registerAccountLabel= By.xpath("//h1[text()='Register Account']");
-    private By registerLink=By.linkText("Register");
+    private final By first_Name= By.id("input-firstname");
+    private final By last_Name= By.id("input-lastname");
+    private final By emailID= By.id("input-email");
+    private final By telephoneNum= By.id("input-telephone");
+    private final By password= By.id("input-password");
+    private final By confirmPassword= By.id("input-confirm");
+    private final By yesRadioButton= By.xpath("//input[@name='newsletter' and @value='1']");
+    private final By noRadioButton= By.xpath("//input[@name='newsletter'][@value='1']");
+    private final By privacyPolicyCheckBox=By.xpath("//input[@name='agree'][@value='1']");
+    private final By continueButton= By.xpath("//input[@type='submit'][@value='Continue']");
+    private final By registerAccountLabel= By.xpath("//h1[text()='Register Account']");
+    private final By registerLink=By.linkText("Register");
 
     public RegistrationPage(WebDriver driver) {
         this.driver=driver;
@@ -34,7 +34,7 @@ public class RegistrationPage {
         driver.findElement(emailID).sendKeys(email);
         driver.findElement(telephoneNum).sendKeys(telephone);
         driver.findElement(password).sendKeys(pwd);
-        driver.findElement(confirmpassword).sendKeys(pwd);
+        driver.findElement(confirmPassword).sendKeys(pwd);
     }
 
     public void clickOnYesRadioButton()
