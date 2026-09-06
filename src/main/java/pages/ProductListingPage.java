@@ -8,7 +8,7 @@ public class ProductListingPage {
     private final By listViewButton=By.id("list-view");
     private final By gridViewButton=By.id("grid-view");
     private final By sortByLabel=By.xpath("//label[@class='input-group-addon' and text()='Sort By:']");
-    private final By showProductsLabel=By.xpath("//label[@class='input-group-addon' and text()='Sh:']");
+    private final By showProductsLabel=By.xpath("//label[@class='input-group-addon' and text()='Show:']");
 
     WebDriver driver;
     public ProductListingPage(WebDriver driver) {

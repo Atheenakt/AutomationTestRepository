@@ -67,6 +67,7 @@ public class HomePageSteps {
         String currencySymbol=currency.substring(0,1);
         for(WebElement price:priceListfromUI)
         {
+            System.out.println("price is:"+price.getText());
             Assert.assertTrue(price.getText().contains(currencySymbol));
         }
     }
@@ -82,21 +83,18 @@ public class HomePageSteps {
          homePage.chooseProductFromDropdown(productClassification);
     }
 
-    @Then("user validates featured option is available in the bottom of the page")
+    @Then("user validates featured area present and products are displayed")
     public void userValidatesFeaturedOptionIsAvailableInTheBottomOfThePage() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+        homePage.validateFeaturedSection();
     }
 
-    @And("user validates products are displayed under featured option")
-    public void userValidatesProductsAreDisplayedUnderFeaturedOption() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
-    }
-
-    @And("user Validates available buttons for featured products")
+    @Then("user Validates available buttons for featured products")
     public void userValidatesAvailableButtonsForFeaturedProducts() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
+        homePage.validateFeaturedProductsAndButtons();
+    }
+
+    @Then("user validates advertisements of home page")
+    public void userValidatesFootersOfHomePage() {
+        homePage.advertisementValidation();
     }
 }
