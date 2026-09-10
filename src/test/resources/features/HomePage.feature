@@ -33,9 +33,11 @@ Feature: Home Page Feature
       | productClassification | product  | title    |
       | Components            | Monitors | Monitors |
 
-  Scenario: Validation of Featured option in Home Page
 
-    When user validates featured option is available in the bottom of the page
-    And user validates products are displayed under featured option
-    And user Validates available buttons for featured products
+  Scenario: Validation of Featured option and advertisements in Home Page
+
+    Then user validates featured area present and products are displayed
+    Then user Validates available buttons for featured products
+    Then user validates advertisements of home page
+
 

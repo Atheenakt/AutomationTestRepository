@@ -11,7 +11,7 @@ import pages.LoginPage;
 import java.util.List;
 
 public class LoginPageSteps {
-    private LoginPage loginPage=new LoginPage(DriverFactory.getDriver());
+    private final LoginPage loginPage=new LoginPage(DriverFactory.getDriver());
 
     @When("user enters email and password {string} {string}")
     public void user_enters_email_password(String email, String password) {

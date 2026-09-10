@@ -3,12 +3,16 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.WaitUtils;
 
+import java.time.Duration;
 import java.util.List;
 
 public class HomePage {
     WebDriver driver;
+    WaitUtils waitUtils;
     private final By myAccount=By.xpath("//a[@title='My Account']");
     private final By registerOption=By.linkText("Register");
     private final By loginOption=By.linkText("Login");
@@ -20,10 +24,18 @@ public class HomePage {
     private final By checkoutOption=By.xpath("//a[@title='Checkout']");
     private final By currencyButton=By.xpath("//form[@id='form-currency']//button[contains(@class, 'dropdown-toggle')]");
     private final By productPrice=By.xpath("//p[@class='price']");
-
-    WebElement dropdown_element;
+    private final By featuredProductImage=By.xpath("//div[@id='content']//div[@class='image']");
+    private final By featuredProductCaption=By.xpath("//div[@id='content']//div[@class='caption']");
+    private final By featuredProductAddToCart=By.xpath("//span[text()='Add to Cart']//parent ::button");
+    private final By featuredProductWishList=By.xpath("//button[@data-toggle='tooltip' and @data-original-title='Add to Wish List']");
+    private final By featuredProductCompare=By.xpath("//button[@data-toggle='tooltip' and @data-original-title='Compare this Product']");
+    private final By advertisementSection=By.xpath("//div[@id='carousel0']");
+    private final By advertisedImages =By.xpath("//div[@id='carousel0' and @class='swiper-container swiper-container-horizontal']//div//img[@class='img-responsive']");
+    private final By previousSwipeButton=By.xpath("//div[@class='carousel swiper-viewport']//div[@class='swiper-button-prev']");
+    private final By nextSwipeButton=By.xpath("//div[@class='carousel swiper-viewport']//div[@class='swiper-button-next']");
     public HomePage(WebDriver driver) {
         this.driver=driver;
+        this.waitUtils = new WaitUtils(driver);
     }
 
     public String getTitle()
@@ -70,12 +82,14 @@ public class HomePage {
     }
 
     public void clickOnCurrencyAndChooseCurrency(String currency) {
-        dropdown_element = driver.findElement(currencyButton);
-        Select select = new Select(dropdown_element);
-        select.selectByVisibleText(currency);
+        driver.findElement(currencyButton).click();
+        WebElement element = waitUtils.waitForVisibility(By.xpath("//button[text()='"+currency+"']"));
+        element.click();
     }
 
     public List<WebElement> capturePriceValues() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        waitUtils.waitForVisibility(productPrice);
         return driver.findElements(productPrice);
     }
 
@@ -87,5 +101,26 @@ public class HomePage {
     public void chooseProductFromDropdown(String productClassification) {
         final By productFromDropdown=By.xpath("//ul[@class='list-unstyled']//a[contains(text(),'"+productClassification+"')]");
         driver.findElement(productFromDropdown).click();
+    }
+
+    public void validateFeaturedSection() {
+        driver.findElement(featured).isDisplayed();
+        driver.findElement(featuredProductImage).isDisplayed();
+        driver.findElement(featuredProductCaption).isDisplayed();
+    }
+
+    public void validateFeaturedProductsAndButtons() {
+        driver.findElement(featuredProductAddToCart).isDisplayed();
+        driver.findElement(featuredProductWishList).isDisplayed();
+        driver.findElement(featuredProductCompare).isDisplayed();
+    }
+
+    public void advertisementValidation() {
+        WebElement advertisementSect=driver.findElement(advertisementSection);
+        Actions actions = new Actions(driver);
+        actions.moveToElement(advertisementSect).perform();
+        driver.findElement(advertisedImages).isDisplayed();
+        driver.findElement(previousSwipeButton).isDisplayed();
+        driver.findElement(nextSwipeButton).isDisplayed();
     }
 }

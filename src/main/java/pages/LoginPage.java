@@ -11,7 +11,7 @@ public class LoginPage {
     private final By password = By.id("input-password");
     private final By login = By.xpath("//input[@type='submit' and @value='Login']");
     // . Representing class and classname , a -> All the links - Similar to //div[@class='list-group']/a
-    private By loginPageLinks = By.cssSelector(".list-group a");
+    private final By loginPageLinks = By.cssSelector(".list-group a");
     private final By errorMsg = By.xpath("//*[@id='account-login']/div[1]");
     private final By registerAccount = By.xpath("//strong[text()='Register Account']");
     private final By continueButton = By.linkText("Continue");
