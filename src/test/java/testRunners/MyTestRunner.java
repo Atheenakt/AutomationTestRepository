@@ -8,10 +8,12 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = {"src/test/resources/features"},
         glue     ={ "stepDefinitions", "AppHooks"},
+        tags = "not @skip",
         plugin   = {
                 "pretty",
                 "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
-                "timeline:test-output-thread/"
+                "timeline:test-output-thread/",
+                "rerun:target/failedRun.txt"
         }
 )
 public class MyTestRunner {
